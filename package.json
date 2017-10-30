@@ -1,0 +1,16 @@
+{
+  "name": "table",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "datatables.net-fixedcolumns": "^3.2.3",
+    "iscroll": "^5.2.0",
+    "jQuery": "^1.7.4"
+  }
+}

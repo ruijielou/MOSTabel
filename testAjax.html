@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>Mobile Fixed Columns Table example(bootstrap.css)</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <!-- 测试过的版本 2.3.2 -->
+    <!-- <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.no-icons.min.css" rel="stylesheet"> -->
+    <style type="text/css">
+    /* 覆盖bootstrap的样式, 默认为100%, 会造成水平滚动条出不来 */
+
+    html,
+    body,
+    .container {
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .container {
+        height: 100%;
+        padding-bottom: 15px;
+    }
+
+    table {
+        max-width: none;
+    }
+
+    th {
+        background: #fff;
+        font-weight: normal;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    td,
+    th {
+        white-space: nowrap;
+        border-right: 1px solid #ccc;
+        border-bottom: 1px solid #ccc;
+    }
+
+    .table>thead>tr>th {
+        vertical-align: bottom;
+        border-bottom: 1px solid #ddd;
+    }
+    #example_filter,
+    .dataTables_info {
+        display: none;
+    }
+
+    .dataTables_scroll {
+        height: 100%;
+    }
+    </style>
+    <script src="http://lib.sinaapp.com/js/jquery/1.8.2/jquery.min.js"></script>
+    <script src="./node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="./node_modules/datatables.net-fixedcolumns/js/dataTables.fixedColumns.js"></script>
+    <script src="./node_modules/iscroll/build/iscroll.js"></script>
+    <script>
+    $(document).ready(function() {
+
+        // datatable的配置信息
+        var tableHeight = window.document.body.clientHeight - 38;
+        console.log(tableHeight)
+        // loadingDataTable(tableHeight)
+
+        // function loadingDataTable(tableHeight) {
+        var table = $('.example').DataTable({
+            scrollY: tableHeight + "px",
+            scrollX: '100%',
+            paging: false,
+            searching: false,
+            fixedHeader: true,
+            fixedColumns: {
+                leftColumns: 1
+            },
+            deferRender: true,
+            "ajax": "./objects.txt",
+            "columns": [
+                { "data": "name", 'class': 'active' },
+                { "data": "position" ,'class': 'warning'},
+                { "data": "office" ,'class': 'active'},
+                { "data": "extn" ,'class': 'danger'},
+                { "data": "start_date" ,'class': 'info'},
+                { "data": "salary" ,'class': 'success'}
+            ]
+        });
+
+        // 合并固定列的相同的标题
+        $('.DTFC_LeftBodyLiner .gradeX').each(function() {
+            var str1 = $(this).find('td').eq(0).html();
+            var str2 = $(this).find('td').eq(1).html();
+            if (str1 == str2) {
+                $(this).find('td').eq(0).attr('colspan', '2');
+                $(this).find('td').eq(0).addClass('text-center');
+                $(this).find('td').eq(1).remove();
+            }
+        })
+
+
+    });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table browser-table example" id="example">
+            <thead>
+                <tr>
+                    <th>name</th>
+                    <th>position</th>
+                    <th>office(s)</th>
+                    <th>extn</th>
+                    <th>start_date</th>
+                    <th>salary</th>
+                </tr>
+            </thead>
+
+        </table>
+    </div>
+</body>
+
+</html>
