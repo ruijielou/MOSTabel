@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <style>
+    .table {
+        margin-bottom: 0;
+    }
+
+    #myTable .table th {
+        border-bottom: 1px solid #ccc;
+    }
+
+    #tableHeader {
+        position: fixed;
+        top: 0;
+        left: 0;
+        overflow-x: auto;
+        background: #fff;
+    }
+
+    #tableBody {
+        padding-top: 37px;
+    }
+
+    td,
+    th {
+        white-space: nowrap;
+        /*display: block;*/
+    }
+
+    tr {
+        display: block;
+    }
+
+    table {
+        display: block;
+    }
+    </style>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+    $(function() {
+
+        addWidth();
+
+        function addWidth() {
+
+            var tdWidthArr = [];
+            var trWidth = 0;
+
+            for (var i = 0; i < $('thead th').length; i++) {
+
+                tdWidthArr = [];
+                var thWidth = $('thead th').eq(i).outerWidth();
+
+                tdWidthArr.push(thWidth);
+                $('tbody').find('tr').each(function() {
+                    var tdWidth = $(this).find('td').eq(i).outerWidth();
+                    tdWidthArr.push(tdWidth)
+                })
+                tdWidthArr.sort(function(v1, v2) {
+                    return v1 - v2;
+                });
+
+                var maxWidth = tdWidthArr[tdWidthArr.length - 1];
+
+                $('thead th').eq(i).css('width', maxWidth);
+
+                $('tbody').find('tr').each(function() {
+                    $(this).find('td').eq(i).css('width', maxWidth);
+                });
+
+                trWidth += parseInt($('thead th').eq(i).css('width'));
+
+                $('tr').css('width', trWidth);
+                $('thead').css('width', trWidth);
+                $('tbody').css('width', trWidth);
+
+                var tdHeight = $('th').outerHeight();
+
+                $('td').css('height', tdHeight)
+            }
+        }
+    })
+    </script>
+</head>
+
+<body>
+    <div id="myTable">
+        <div id="tableHeader">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>header 1</th>
+                        <th>header 2</th>
+                        <th>header 3</th>
+                        <th>header 4</th>
+                        <th>header 5</th>
+                        <th>header 6</th>
+                        <th>header 7</th>
+                        <th>header 8</th>
+                        <th>header 9</th>
+                        <th>header 10</th>
+                        <th>header 11</th>
+                        <th>header 12</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        <div id="tableBody">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>datassssssssssssssssssssssssssssss</td>
+                        <td>datassssssssssssssssssssssssssssss</td>
+                        <td>datassssssssssssssssssssssssssssss</td>
+                        <td>datassssssssssssssssssssssssssssss</td>
+                        <td>datassssssssssssssssssssssssssssss</td>
+                        <td>datassssssssssssssssssssssssssssss</td>
+                    </tr>
+                    <tr>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                        <td>data</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                    <tr>
+                        <td>data 1</td>
+                        <td>data 2</td>
+                        <td>data 3</td>
+                        <td>data 4</td>
+                        <td>data 5</td>
+                        <td>data 6</td>
+                        <td>data 7</td>
+                        <td>data 8</td>
+                        <td>data 9</td>
+                        <td>data 10</td>
+                        <td>data 11</td>
+                        <td>data 12</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</body>
+
+</html>

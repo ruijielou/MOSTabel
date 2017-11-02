@@ -1,0 +1,298 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>myTable3</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css">
+
+    table {
+        max-width: none;
+    }
+
+    th {
+        background: #fff;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        /*overflow: hidden;*/
+    }
+
+    .dataTables_scroll {
+        height: 100%;
+    }
+
+    @media only screen and (max-width: 320px) {
+        #example_wrapper {
+            overflow: hidden;
+        }
+    }
+    /* Extra Small Devices, Phones */
+
+    @media only screen and (max-width: 480px) {
+        #example_wrapper {
+            overflow: hidden;
+        }
+    }
+    /* Small Devices, Tablets */
+
+    @media only screen and (max-width: 768px) {
+        #example_wrapper {
+            overflow: hidden;
+        }
+    }
+
+    td,
+    th {
+        white-space: nowrap;
+        border-right: 1px solid #ccc;
+
+        /*border-bottom: 1px solid #ccc;*/
+    }
+    tr td[rowspan] {
+         vertical-align: middle !important;
+    }
+
+
+    #example_filter,
+    .dataTables_info {
+        display: none;
+    }
+
+#example_wrapper {
+    height: 100%;
+}
+
+    table {
+        border-collapse: separate;
+    }
+
+    .table>thead>tr>th,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
+        border-top: 1px solid #ddd;
+        border-collapse: collapse;
+
+    }
+
+    table tr {
+        background-color: #fff;
+    }
+
+    .dataTables_scrollBody table {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .browser-table tr.gradeX th {
+        background-color: rgb(0, 32, 96) !important;
+        color: #fff;
+        border: none;
+        border-right: 1px solid #000;
+    }
+
+    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        padding: 6px 15px;
+    }
+    </style>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="./node_modules/datatables.net-fixedcolumns/js/dataTables.fixedColumns.js"></script>
+    <script src="./node_modules/iscroll/build/iscroll.js"></script>
+    <script>
+    $(document).ready(function() {
+
+        var tableHeight = window.document.body.clientHeight - 38;
+
+        var table = $('#example').DataTable({
+            scrollY: tableHeight + "px",
+            scrollX: '100%',
+            scrollCollapse: true,
+            paging: false,
+            fixedColumns: {
+                leftColumns: 1
+            }
+        });
+
+        // 合并固定列的相同的标题
+        //
+        $('.DTFC_LeftBodyLiner tr').each(function() {
+            var str1 = $(this).find('td').eq(0).html();
+            var str2 = $(this).find('td').eq(1).html();
+            if (str1 == str2) {
+                $(this).find('td').eq(0).attr('colspan', '2');
+                $(this).find('td').eq(0).addClass('text-center');
+                $(this).find('td').eq(1).remove();
+            }
+        });
+        $('.DTFC_LeftBodyLiner tr').each(function(index, ele) {
+            var str1 = $(this).find('td').html();
+            var that = this;
+            var i = 1;
+            $('.DTFC_LeftBodyLiner tr').each(function(innerIdex, innerEle) {
+                var innerStr = $(this).find('td').html();
+                if (index !== innerIdex && str1 == innerStr) {
+                    $(this).find('td').remove();
+                    i++
+                    $(that).find('td').attr('rowspan', i)
+                }
+            })
+
+        })
+    });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table browser-table" id="example">
+            <thead>
+                <tr class="gradeX">
+                    <th>Title </th>
+                    <th>类型</th>
+                    <th>5+7 May 目标</th>
+                    <th>实际完成</th>
+                    <th>GAP</th>
+                    <th>YoY</th>
+                    <th>MoM</th>
+                    <th>预计MS</th>
+                    <th>去年同期MS</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="active">
+                    <td>Buick</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>80602</td>
+                    <td>-6098</td>
+                    <td>-5.0%</td>
+                    <td>-5.0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="active">
+                    <td>Buick</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>90840</td>
+                    <td>-2767</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="success">
+                    <td>Chevy</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>80602</td>
+                    <td>-6098</td>
+                    <td>-5.0%</td>
+                    <td>-5.0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="success">
+                    <td>Chevy</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>90840</td>
+                    <td>-2767</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="danger">
+                    <td>Caddy</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>80602</td>
+                    <td>-6098</td>
+                    <td>-5.0%</td>
+                    <td>-5.0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="danger">
+                    <td>Caddy</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>90840</td>
+                    <td>-2767</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="warning">
+                    <td>Total</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>80602</td>
+                    <td>-6098</td>
+                    <td>-5.0%</td>
+                    <td>-5.0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="warning">
+                    <td>Total</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>90840</td>
+                    <td>-2767</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="warning">
+                    <td>Export</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>80602</td>
+                    <td>-6098</td>
+                    <td>-5.0%</td>
+                    <td>-5.0%</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="warning">
+                    <td>Export</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>90840</td>
+                    <td>-2767</td>
+                    <td>10%</td>
+                    <td>10%</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+
