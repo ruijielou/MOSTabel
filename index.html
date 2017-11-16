@@ -1,0 +1,354 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <title>今日销量报表</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css">
+    table {
+        max-width: none;
+    }
+
+    th {
+        background: #fff;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        /*overflow: hidden;*/
+    }
+
+    .dataTables_scroll {
+        height: 100%;
+    }
+
+    @media only screen and (max-width: 320px) {
+        #example_wrapper {
+            overflow: hidden;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        #example_wrapper {
+            overflow: hidden;
+        }
+    }
+    /* Small Devices, Tablets */
+
+    @media only screen and (max-width: 768px) {
+        #example_wrapper {
+            overflow: hidden;
+        }
+    }
+
+    td,
+    th {
+        white-space: nowrap;
+        border-right: 1px dotted rgba(0, 0, 0, .5);
+    }
+
+    tr td[rowspan] {
+        vertical-align: middle !important;
+    }
+
+    #example_filter,
+    .dataTables_info {
+        display: none;
+    }
+
+    #example_wrapper {
+        height: 100%;
+    }
+
+    table {
+        border-collapse: separate;
+    }
+
+    .table>thead>tr>th,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
+        border-top: 1px dotted rgba(0, 0, 0, .5);
+        border-collapse: collapse;
+        text-align: center;
+    }
+
+    .buick,
+    .chevy,
+    .export,
+    .SGM {
+        background-color: rgb(255, 255, 204);
+    }
+
+    .caddy,
+    .total {
+        background-color: rgb(255, 255, 255);
+    }
+
+    .gray {
+        background-color: rgb(242, 242, 242);
+        border: none !important;
+    }
+
+    .border-right {
+        border-right: 1px dotted rgba(0, 0, 0, .5) !important;
+    }
+
+    .border-top {
+        border-top: 1px dotted rgba(0, 0, 0, .5) !important;
+    }
+
+    table tr {
+        background-color: #fff;
+    }
+
+    .dataTables_scrollBody table {
+        border-bottom: 1px dotted rgba(0, 0, 0, .5);
+    }
+
+    .browser-table tr.gradeX th {
+        background-color: rgb(0, 32, 96) !important;
+        color: #fff;
+        border: none;
+        border-right: 1px dotted rgba(0, 0, 0, .5);
+    }
+
+    .table>thead>tr>th,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
+        padding: 0 26px;
+    }
+
+    @media only screen and (max-width: 320px) {
+        .table>thead>tr>th,
+        .table>tbody>tr>th,
+        .table>tfoot>tr>th,
+        .table>thead>tr>td,
+        .table>tbody>tr>td,
+        .table>tfoot>tr>td {
+            padding: 0 16px;
+        }
+    }
+
+    @media only screen and (max-width: 480px) {
+        .table>thead>tr>th,
+        .table>tbody>tr>th,
+        .table>tfoot>tr>th,
+        .table>thead>tr>td,
+        .table>tbody>tr>td,
+        .table>tfoot>tr>td {
+            padding: 0 16px;
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+        .table>thead>tr>th,
+        .table>tbody>tr>th,
+        .table>tfoot>tr>th,
+        .table>thead>tr>td,
+        .table>tbody>tr>td,
+        .table>tfoot>tr>td {
+            padding: 0 16px;
+        }
+    }
+    </style>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="./node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="./node_modules/datatables.net-fixedcolumns/js/dataTables.fixedColumns.js"></script>
+    <script src="./node_modules/iscroll/build/iscroll.js"></script>
+    <script>
+    $(document).ready(function() {
+
+        var tableHeight = window.document.body.clientHeight - 38;
+
+        var table = $('#example').DataTable({
+            scrollY: tableHeight + "px",
+            scrollX: '100%',
+            scrollCollapse: true,
+            paging: false,
+            fixedColumns: {
+                leftColumns: 1
+            }
+        });
+
+        // 合并固定列的相同的标题
+        //
+        $('.DTFC_LeftBodyLiner tr').each(function() {
+            var str1 = $(this).find('td').eq(0).html();
+            var str2 = $(this).find('td').eq(1).html();
+            if (str1 == str2) {
+                $(this).find('td').eq(0).attr('colspan', '2');
+                $(this).find('td').eq(0).addClass('text-center');
+                $(this).find('td').eq(1).remove();
+            }
+        });
+        $('.DTFC_LeftBodyLiner tr').each(function(index, ele) {
+            var str1 = $(this).find('td').html();
+            var that = this;
+            var i = 1;
+            $('.DTFC_LeftBodyLiner tr').each(function(innerIdex, innerEle) {
+                var innerStr = $(this).find('td').html();
+                if (index !== innerIdex && str1 == innerStr) {
+                    $(this).find('td').remove();
+                    i++
+                    $(that).find('td').attr('rowspan', i)
+                }
+            })
+        });
+        window.addEventListener("onorientationchange" in window ? "orientationchange" : "resize", function() { location.reload(); }, false);
+    });
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <table class="table browser-table" id="example">
+            <thead>
+                <tr class="gradeX">
+                    <th>品牌 </th>
+                    <th>类型</th>
+                    <th>今日目标</th>
+                    <th>当前已完成</th>
+                    <th>剩余</th>
+                    <th>线上未配</th>
+                    <th>截止当日可配</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="buick">
+                    <td>Buick</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>80602</td>
+                    <td>-2767</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="buick">
+                    <td>Buick</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>90840</td>
+                    <td>-2767</td>
+                    <td>10</td>
+                    <td>1</td>
+                </tr>
+                <tr class="chevy">
+                    <td>Chevy</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>80602</td>
+                    <td>-6098</td>
+                   <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="chevy">
+                    <td>Chevy</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>90840</td>
+                    <td>-2767</td>
+                    <td>5</td>
+                    <td>1</td>
+                </tr>
+                <tr class="caddy">
+                    <td>Caddy</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>80602</td>
+                    <td>-6098</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="caddy">
+                    <td>Caddy</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>90840</td>
+                    <td>-2767</td>
+                    <td>3</td>
+                    <td>1</td>
+                </tr>
+                <tr class="total">
+                    <td>Total</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="total">
+                    <td>Total</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>0</td>
+                    <td>0</td>
+                   <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Export</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr>
+                    <td>Export</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="SGM">
+                    <td>SGM+Export</td>
+                    <td>W/S</td>
+                    <td>86700</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+                <tr class="SGM">
+                    <td>SGM+Export</td>
+                    <td>R/T</td>
+                    <td>93607</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.18.8'><\/script>".replace("HOST", location.hostname));
+//]]></script>
+</body>
+
+</html>

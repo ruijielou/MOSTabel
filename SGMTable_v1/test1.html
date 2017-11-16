@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="../node_modules/datatables.net-fixedcolumns/js/dataTables.fixedColumns.js"></script>
+    <script>
+    $(document).ready(function() {
+
+                   //：var myURL = parseURL('http://abc.com:8080/dir/index.html?id=255&m=hello#top');
+                   //
+                    // myURL.file='index.html'
+
+                    // myURL.hash= 'top'
+
+                    // myURL.host= 'abc.com'
+
+                    // myURL.query= '?id=255&m=hello'
+
+                    // myURL.params= Object = { id: 255, m: hello }
+
+                    // myURL.path= '/dir/index.html'
+
+                    // myURL.segments= Array = ['dir', 'index.html']
+
+                    // myURL.port= '8080'
+
+                    // myURL.protocol= 'http'
+
+                    // myURL.source= 'http://abc.com:8080/dir/index.html?id=255&m=hello#top'
+
+                    function parseURL(url) {
+                        var a = document.createElement('a');
+                        a.href = url;
+                        return {
+                            source: url,
+                            protocol: a.protocol.replace(':', ''),
+                            host: a.hostname,
+                            port: a.port,
+                            query: a.search,
+                            params: (function() {
+                                var ret = {},
+                                    seg = a.search.replace(/^\?/, '').split('&'),
+                                    len = seg.length,
+                                    i = 0,
+                                    s;
+                                for (; i < len; i++) {
+                                    if (!seg[i]) { continue; }
+                                    s = seg[i].split('=');
+                                    ret[s[0]] = s[1];
+                                }
+                                return ret;
+                            })(),
+                            file: (a.pathname.match(/\/([^\/?#]+)$/i) || [, ''])[1],
+                            hash: a.hash.replace('#', ''),
+                            path: a.pathname.replace(/^([^\/])/, '/$1'),
+                            relative: (a.href.match(/tps?:\/\/[^\/]+(.+)/) || [, ''])[1],
+                            segments: a.pathname.replace(/^\//, '').split('/')
+                        };
+                    }
+
+                    http://portal.ebistrategy.com:8060/views/2/2?:embed=y&:toolbar=no#1
+                    http://portal.ebistrategy.com:8060/views/2/2?:embed=y&:toolbar=no
+
+                //var myURL = parseURL('http://abc.com:8080/dir/index.html?id=255&m=hello#top');
+                //
+                // var myURL = parseURL('http://localhost:8080/test/mytest/toLogina.ction?m=123&pid=abc');
+                var myURL = parseURL('http://portal.ebistrategy.com:8060/trusted/73a-SDlzR4ez0anP-TrYuA==:3Imm84ofgziiQ91RITeZfL6A/views/Superstore/Overview?:embed=y&:format=png&:toolbar=no')
+
+                console.log(myURL);
+                console.log(myURL.params);
+
+                console.log(myURL.host + ':' + myURL.port+'/'+ myURL.segments[2] +'/'+ myURL.segments[3] +"/"+ myURL.segments[4] + '?:embed='+ myURL.params[':embed'] + '&:toolbar=' + myURL.params[':toolbar'])
+})
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

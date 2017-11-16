@@ -103,13 +103,15 @@
     .browser-table tr.gradeX th {
         background-color: rgb(52, 90, 167) !important;
         color: #fff;
-        border: none;
+        /*border: none;*/
         border-right: 1px solid #ccc;
     }
-
-    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
-        padding: 6px 15px;
+  .padding-th {
+        padding: 0 12px;
     }
+   /* .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+        padding: 6px 15px;
+    }*/
     </style>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
     <script src="./node_modules/datatables.net/js/jquery.dataTables.js"></script>
@@ -164,24 +166,24 @@
         <table class="table browser-table" id="example">
             <thead>
                 <tr class="gradeX">
-                    <th>品牌 </th>
-                    <th>类型</th>
-                    <th>5+7 May 目标</th>
-                    <th>实际完成</th>
-                    <th>GAP</th>
-                    <th>YoY</th>
-                    <th>MoM</th>
-                    <th>预计MS</th>
-                    <th>去年同期MS</th>
-                    <th>品牌 </th>
-                    <th>类型</th>
-                    <th>5+7 May 目标</th>
-                    <th>实际完成</th>
-                    <th>GAP</th>
-                    <th>YoY</th>
-                    <th>MoM</th>
-                    <th>预计MS</th>
-                    <th>去年同期MS</th>
+                    <th><div class="padding-th"> 品牌 </div></th>
+                    <th><div class="padding-th">类型</div></th>
+                    <th><div class="padding-th">5+7 May 目标</div></th>
+                    <th><div class="padding-th">实际完成</div></th>
+                    <th><div class="padding-th"> GAP </div></th>
+                    <th><div class="padding-th"> YoY </div></th>
+                    <th><div class="padding-th"> MoM </div></th>
+                    <th><div class="padding-th">预计MS</div></th>
+                    <th><div class="padding-th">去年同期MS</div></th>
+                    <th><div class="padding-th">品  牌 </div></th>
+                    <th><div class="padding-th">类  型</div></th>
+                    <th><div class="padding-th">5+7 May 目标</div></th>
+                    <th><div class="padding-th">实际完成</div></th>
+                    <th><div class="padding-th"> GAP </div></th>
+                    <th><div class="padding-th"> YoY </div></th>
+                    <th><div class="padding-th"> MoM </div></th>
+                    <th><div class="padding-th">预计MS</div></th>
+                    <th><div class="padding-th">去年同期MS</div></th>
                 </tr>
             </thead>
             <tbody>

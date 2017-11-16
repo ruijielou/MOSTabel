@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" type="text/css" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <style type="text/css">
-
     table {
         max-width: none;
     }
@@ -44,6 +43,7 @@
         }
     }
     /* Extra Small Devices, Phones */
+
     @media only screen and (max-width: 480px) {
         #example_wrapper {
             overflow: hidden;
@@ -62,8 +62,9 @@
         white-space: nowrap;
         border-right: 1px solid #ccc;
     }
+
     tr td[rowspan] {
-         vertical-align: middle !important;
+        vertical-align: middle !important;
     }
 
     #example_filter,
@@ -96,10 +97,12 @@
     .dataTables_scrollBody table {
         border-bottom: 1px solid #ddd;
     }
+
     .DTFC_LeftBodyLiner td {
         background-color: rgb(52, 90, 167) !important;
         color: #fff;
     }
+
     .browser-table tr.gradeX th {
         background-color: rgb(52, 90, 167) !important;
         color: #fff;
@@ -107,8 +110,19 @@
         border-right: 1px solid #ccc;
     }
 
-    .table > thead > tr > th, .table > tbody > tr > th, .table > tfoot > tr > th, .table > thead > tr > td, .table > tbody > tr > td, .table > tfoot > tr > td {
+    .table>thead>tr>th,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
         padding: 6px 15px;
+    }
+    .DTFC_LeftHeadWrapper, .DTFC_LeftBodyWrapper {
+        width: 100%;
+    }
+    .padding-th {
+        padding: 0 8px;
     }
     </style>
     <script src="./node_modules/jquery/dist/jquery.min.js"></script>
@@ -116,46 +130,52 @@
     <script src="./node_modules/datatables.net-fixedcolumns/js/dataTables.fixedColumns.js"></script>
     <script src="./node_modules/iscroll/build/iscroll.js"></script>
     <script>
-
     $(document).ready(function() {
 
-        var tableHeight = window.document.body.clientHeight - 38;
+                var tableHeight = window.document.body.clientHeight - 38;
 
-        var table = $('#example').DataTable({
-            scrollY: tableHeight + "px",
-            scrollX: '100%',
-            scrollCollapse: true,
-            paging: false,
-            fixedColumns: {
-                leftColumns: 1
-            }
-        });
+                var table = $('#example').DataTable({
+                        scrollY: tableHeight + "px",
+                        scrollX: '100%',
+                        scrollCollapse: true,
+                        paging: false,
+                        fixedColumns: {
+                            leftColumns: 1
+                        },
+                        "columnsDefs": [
+                            { "targets": [0], width: "10%" }]
+                        });
 
-        // 合并固定列的相同的标题
-        //
-        $('.DTFC_LeftBodyLiner tr').each(function() {
-            var str1 = $(this).find('td').eq(0).html();
-            var str2 = $(this).find('td').eq(1).html();
-            if (str1 == str2) {
-                $(this).find('td').eq(0).attr('colspan', '2');
-                $(this).find('td').eq(0).addClass('text-center');
-                $(this).find('td').eq(1).remove();
-            }
-        });
-        $('.DTFC_LeftBodyLiner tr').each(function(index, ele) {
-            var str1 = $(this).find('td').html();
-            var that = this;
-            var i = 1;
-            $('.DTFC_LeftBodyLiner tr').each(function(innerIdex, innerEle) {
-                var innerStr = $(this).find('td').html();
-                if (index !== innerIdex && str1 == innerStr) {
-                    $(this).find('td').remove();
-                    i++
-                    $(that).find('td').attr('rowspan', i)
-                }
-            })
-        })
-    });
+                    // 合并固定列的相同的标题
+                    //
+                    $('.DTFC_LeftBodyLiner tr').each(function() {
+                        var str1 = $(this).find('td').eq(0).html();
+                        var str2 = $(this).find('td').eq(1).html();
+                        if (str1 == str2) {
+                            $(this).find('td').eq(0).attr('colspan', '2');
+                            $(this).find('td').eq(0).addClass('text-center');
+                            $(this).find('td').eq(1).remove();
+                        }
+                    }); $('.DTFC_LeftBodyLiner tr').each(function(index, ele) {
+                        var str1 = $(this).find('td').html();
+                        var that = this;
+                        var i = 1;
+                        $('.DTFC_LeftBodyLiner tr').each(function(innerIdex, innerEle) {
+                            var innerStr = $(this).find('td').html();
+                            if (index !== innerIdex && str1 == innerStr) {
+                                $(this).find('td').remove();
+                                i++
+                                $(that).find('td').attr('rowspan', i)
+                            }
+                        })
+                    })
+                    var width = $('.DTFC_LeftBodyLiner tbody tr td').eq(0).width();
+                     console.log(width + '=============width================') ;
+                    $('.dataTables_scrollBody tbody tr td').eq(0).css('width', width + 'px');
+                    console.log($('.dataTables_scrollBody tbody tr td').eq(0));
+                    console.log($('.sorting_1'));
+                    // $('.sorting_1').html('');
+                });
     </script>
 </head>
 
@@ -164,15 +184,15 @@
         <table class="table browser-table" id="example">
             <thead>
                 <tr class="gradeX">
-                    <th>品牌 </th>
-                    <th>类型</th>
-                    <th>5+7 May 目标</th>
-                    <th>实际完成</th>
-                    <th>GAP</th>
-                    <th>YoY</th>
-                    <th>MoM</th>
-                    <th>预计MS</th>
-                    <th>去年同期MS</th>
+                    <th><div class="padding-th">品牌</div> </th>
+                    <th><div class="padding-th">类型</div></th>
+                    <th><div class="padding-th">5+7 May 目标</div></th>
+                    <th><div class="padding-th">实际完成</div></th>
+                    <th><div class="padding-th">GAP</div></th>
+                    <th><div class="padding-th">YoY</div></th>
+                    <th><div class="padding-th">MoM</div></th>
+                    <th><div class="padding-th">预计MS</div></th>
+                    <th><div class="padding-th">去年同期MS</div></th>
                 </tr>
             </thead>
             <tbody>
@@ -286,7 +306,6 @@
                     <td>0</td>
                     <td>0</td>
                 </tr>
-
             </tbody>
         </table>
     </div>

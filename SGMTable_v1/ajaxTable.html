@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title></title>
+    <link rel="stylesheet" type="text/css" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap4.css">
+    <style type="text/css" media="screen">
+    html,
+    body,
+    .container {
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+
+  /*  html {
+        font-size: 10px;
+
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+    }*/
+
+  /*  body {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 10px;
+        line-height: 1.42857143;
+        color: #333;
+        background-color: #fff;
+    }*/
+    /*  td,
+    th {
+        border-right: 1px solid #ccc;
+    }
+    .table>thead>tr>th,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
+        border-top: 1px solid #ddd;
+        border-collapse: collapse;
+    }*/
+    /*.dataTables_scrollBody table {
+        border-bottom: 1px solid #ddd;
+    }*/
+/**{box-sizing: border-box;}*/
+    table tr {
+        background-color: #fff;
+    }
+    /* .dataTables_scrollBody table {
+        border-bottom: 1px solid #ddd;
+    }*/
+/*td, th {padding: 10px;}*/
+    .DTFC_LeftBodyLiner td {
+        background-color: rgb(52, 90, 167) !important;
+        color: #fff;
+    }
+
+    .table tr.gradeX th {
+        background-color: rgb(52, 90, 167) !important;
+        color: #fff;
+        /*border: none;*/
+        /*border-right: 1px solid #ccc;*/
+    }
+
+    .padding-th {
+        /*padding: 0 20px;*/
+        text-align: right;
+    }
+
+
+    tr td[rowspan] {
+        vertical-align: middle !important;
+    }
+
+    #myTable_wrapper {
+        /*height: 100%;*/
+    }
+
+    .table {
+        text-align: right;
+        /*white-space: nowrap;*/
+    }
+    #myTables th {white-space: nowrap;}
+
+    .DTFC_LeftBodyLiner .tbody tr td {
+        text-align: center;
+    }
+    .DTFC_LeftHeadWrapper thead tr th .padding-th {
+        text-align: center;
+    }
+
+    th {text-align: right;}
+
+    /*#myTable tr td:nth-child(2) {text-align: center;}*/
+.DTFC_LeftBodyLiner .table {border-top:0;}
+.DTFC_LeftHeadWrapper .table {border-bottom:0;}
+
+    </style>
+    <script src="../node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="../node_modules/datatables.net/js/jquery.dataTables.js"></script>
+    <script src="css/bootstrap4.js"></script>
+    <script src="../node_modules/datatables.net-fixedcolumns/js/dataTables.fixedColumns.js"></script>
+    <script src="../node_modules/iscroll/build/iscroll.js"></script>
+    <script>
+    $(document).ready(function() {
+
+        var tbodyHtml = '';
+        var theadHtml = '';
+        var html = '';
+        var oTable = null;
+
+        function init() {
+
+            $.ajax({
+                url: 'data/data1.txt',
+                type: 'get',
+                success: function(data) {
+
+                    var list = JSON.parse(data)
+
+                    var dataList = list.data
+                    var headHtml = ''
+                    var bodyHtml = ''
+
+                    for (var key in dataList[0]) {
+                        if (key !== 'id') {
+                            theadHtml += '<th>' + key + '</th>'
+                        }
+
+                    }
+
+                    for (var i = 0; i < dataList.length; i++) {
+                        tbodyHtml += '<tr>'
+                        for (var k in dataList[i]) {
+
+                            if (k !== 'id') {
+                                tbodyHtml += '<td>' + dataList[i][k] + '</td>'
+                            }
+                        } tbodyHtml += '</tr>'
+                    }
+
+            html = '<div id="myTables"><table id="myTable" class="table table-bordered table-striped" style="margin-bottom: 0;width: auto;">'
+            html += '<thead><tr id="thead" class="gradeX">' + theadHtml + '</tr></thead><tbody class="tbody"> ' + tbodyHtml + '</tbody> </table></div>'
+
+            $('.container').html(html);
+
+            initTable()
+
+                }
+            })
+
+
+
+        }
+        // $('button').on('click', function() {
+        //     $('.container').html('');
+        //     init()
+        // })
+init()
+
+        function initTable() {
+
+            // $.extend($.fn.dataTable.defaults, {
+            //     searching: false, //禁止搜索
+            //     ordering: true //禁止排序
+            // });
+
+                // $("#myTable").DataTable()
+             oTable = $("#myTable").DataTable({
+                "bInfo" : false,
+                "retrieve": true,
+                'responsive': true,
+                "info": false,
+                "filter": false,
+                "destroy": true,
+                searching: false, //禁止搜索
+                ordering: true, //禁止排序
+                "scrollY": $('.container').height() - 50,
+                "scrollX": '300px',
+                "paging": false, //禁止分页
+                fixedColumns: { //关键是这里了，需要第一列不滚动就设置1
+                    leftColumns:2
+                }
+
+            });
+
+            // oTable.draw();
+        }
+
+        // function merge() {
+
+        //     $('.DTFC_LeftBodyLiner tr').each(function() {
+        //         var str1 = $(this).find('td').eq(0).html();
+        //         var str2 = $(this).find('td').eq(1).html();
+        //         if (str1 == str2) {
+        //             $(this).find('td').eq(0).attr('colspan', '2');
+        //             $(this).find('td').eq(0).addClass('text-center');
+        //             $(this).find('td').eq(1).remove();
+        //         }
+        //     });
+        //     $('.DTFC_LeftBodyLiner tr').each(function(index, ele) {
+        //         var str1 = $(this).find('td').html();
+        //         var that = this;
+        //         var i = 1;
+        //         $('.DTFC_LeftBodyLiner tr').each(function(innerIdex, innerEle) {
+        //             var innerStr = $(this).find('td').html();
+        //             if (index !== innerIdex && str1 == innerStr) {
+        //                 $(this).find('td').remove();
+        //                 i++
+        //                 $(that).find('td').attr('rowspan', i)
+        //             }
+        //         })
+        //     })
+        // }
+
+    });
+    </script>
+</head>
+
+<body>
+    <!-- <button type="">clickMe</button> -->
+    <div class="container" style="height: 500px;">
+
+    </div>
+</body>
+
+</html>

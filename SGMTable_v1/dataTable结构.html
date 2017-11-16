@@ -1,0 +1,998 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.css">
+    <style type="text/css" media="screen">
+    table {
+        max-width: none;
+    }
+
+    th {
+        background: #fff;
+    }
+
+    .table {
+        margin-bottom: 0;
+    }
+
+    html,
+    body {
+        width: 100%;
+        height: 100%;
+    }
+
+    .container {
+        width: 100%;
+        height: 100%;
+        padding-left: 0;
+        padding-right: 0;
+        /*overflow: hidden;*/
+    }
+
+    .dataTables_scroll {
+        height: 100%;
+    }
+
+    @media only screen and (max-width: 320px) {
+        #example_wrapper {
+            overflow: hidden;
+        }
+    }
+    /* Extra Small Devices, Phones */
+
+    @media only screen and (max-width: 480px) {
+        #example_wrapper {
+            overflow: hidden;
+        }
+    }
+    /* Small Devices, Tablets */
+
+    @media only screen and (max-width: 768px) {
+        #example_wrapper {
+            overflow: hidden;
+        }
+    }
+
+    td,
+    th {
+        white-space: nowrap;
+        border-right: 1px solid #ccc;
+    }
+
+    tr td[rowspan] {
+        vertical-align: middle !important;
+    }
+
+    #example_filter,
+    .dataTables_info {
+        display: none;
+    }
+
+    #example_wrapper {
+        height: 100%;
+    }
+
+    table {
+        border-collapse: separate;
+    }
+
+    .table>thead>tr>th,
+    .table>tbody>tr>th,
+    .table>tfoot>tr>th,
+    .table>thead>tr>td,
+    .table>tbody>tr>td,
+    .table>tfoot>tr>td {
+        border-top: 1px solid #ddd;
+        border-collapse: collapse;
+    }
+
+    table tr {
+        background-color: #fff;
+    }
+
+    .dataTables_scrollBody table {
+        border-bottom: 1px solid #ddd;
+    }
+
+    .DTFC_LeftBodyLiner td {
+        background-color: rgb(52, 90, 167) !important;
+        color: #fff;
+    }
+
+    .browser-table tr.gradeX th {
+        background-color: rgb(52, 90, 167) !important;
+        color: #fff;
+        border: none;
+        border-right: 1px solid #ccc;
+    }
+
+    .padding-th {
+        padding: 0 12px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div id="example_wrapper" class="dataTables_wrapper no-footer">
+            <div id="example_filter" class="dataTables_filter">
+                <label>Search:
+                    <input type="search" class="" placeholder="" aria-controls="example">
+                </label>
+            </div>
+            <div class="DTFC_ScrollWrapper" style="position: relative; clear: both; height: 599px;">
+                <div class="DTFC_RightWrapper" style="position:absolute; top:0; right:0;">
+                    <div class="DTFC_RightHeadWrapper" style="position:relative; top:0; left:0;">
+                        <div class="DTFC_RightHeadBlocker DTFC_Blocker" style="position:absolute; top:0; bottom:0;"></div>
+                    </div>
+                    <div class="DTFC_RightBodyWrapper" style="position:relative; top:0; left:0; overflow:hidden;">
+                        <div class="DTFC_RightBodyLiner" style="position:relative; top:0; left:0; overflow-y:scroll;"></div>
+                    </div>
+                    <div class="DTFC_RightFootWrapper" style="position:relative; top:0; left:0;">
+                        <div class="DTFC_RightFootBlocker DTFC_Blocker" style="position:absolute; top:0; bottom:0;"></div>
+                    </div>
+                </div>
+                <div class="dataTables_scroll">
+                    <div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;">
+                        <div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 1576px; padding-right: 17px;">
+                            <table class="table browser-table dataTable no-footer" role="grid" style="margin-left: 0px; width: 1576px;">
+                                <thead>
+                                    <tr class="gradeX" role="row" style="height: 36px;">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 69px;" aria-label=" 品牌 : activate to sort column descending" aria-sort="ascending">
+                                            <div class="padding-th"> 品牌 </div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 69px;" aria-label="类型: activate to sort column ascending">
+                                            <div class="padding-th">类型</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 128px;" aria-label="5+7 May 目标: activate to sort column ascending">
+                                            <div class="padding-th">5+7 May 目标</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 97px;" aria-label="实际完成: activate to sort column ascending">
+                                            <div class="padding-th">实际完成</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 72px;" aria-label=" GAP : activate to sort column ascending">
+                                            <div class="padding-th"> GAP </div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 68px;" aria-label=" YoY : activate to sort column ascending">
+                                            <div class="padding-th"> YoY </div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 73px;" aria-label=" MoM : activate to sort column ascending">
+                                            <div class="padding-th"> MoM </div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 90px;" aria-label="预计MS: activate to sort column ascending">
+                                            <div class="padding-th">预计MS</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 118px;" aria-label="去年同期MS: activate to sort column ascending">
+                                            <div class="padding-th">去年同期MS</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 73px;" aria-label="品  牌 : activate to sort column ascending">
+                                            <div class="padding-th">品 牌 </div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 73px;" aria-label="类  型: activate to sort column ascending">
+                                            <div class="padding-th">类 型</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 128px;" aria-label="5+7 May 目标: activate to sort column ascending">
+                                            <div class="padding-th">5+7 May 目标</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 97px;" aria-label="实际完成: activate to sort column ascending">
+                                            <div class="padding-th">实际完成</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 72px;" aria-label=" GAP : activate to sort column ascending">
+                                            <div class="padding-th"> GAP </div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 68px;" aria-label=" YoY : activate to sort column ascending">
+                                            <div class="padding-th"> YoY </div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 73px;" aria-label=" MoM : activate to sort column ascending">
+                                            <div class="padding-th"> MoM </div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 90px;" aria-label="预计MS: activate to sort column ascending">
+                                            <div class="padding-th">预计MS</div>
+                                        </th>
+                                        <th class="sorting" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 118px;" aria-label="去年同期MS: activate to sort column ascending">
+                                            <div class="padding-th">去年同期MS</div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%; max-height: 582px;">
+                        <table class="table browser-table dataTable no-footer" id="example" role="grid" aria-describedby="example_info" style="width: 1576px;">
+                            <thead>
+                                <tr class="gradeX" role="row" style="height: 0px;">
+                                    <th class="sorting_asc" aria-controls="example" rowspan="1" colspan="1" style="width: 69px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-sort="ascending" aria-label=" 品牌 : activate to sort column descending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th"> 品牌 </div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 69px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="类型: activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">类型</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 128px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="5+7 May 目标: activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">5+7 May 目标</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 97px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="实际完成: activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">实际完成</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 72px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label=" GAP : activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th"> GAP </div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 68px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label=" YoY : activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th"> YoY </div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 73px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label=" MoM : activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th"> MoM </div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 90px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="预计MS: activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">预计MS</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 118px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="去年同期MS: activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">去年同期MS</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 73px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="品  牌 : activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">品 牌 </div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 73px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="类  型: activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">类 型</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 128px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="5+7 May 目标: activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">5+7 May 目标</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 97px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="实际完成: activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">实际完成</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 72px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label=" GAP : activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th"> GAP </div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 68px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label=" YoY : activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th"> YoY </div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 73px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label=" MoM : activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th"> MoM </div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 90px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="预计MS: activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">预计MS</div>
+                                        </div>
+                                    </th>
+                                    <th class="sorting" aria-controls="example" rowspan="1" colspan="1" style="width: 118px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="去年同期MS: activate to sort column ascending">
+                                        <div class="dataTables_sizing" style="height:0;overflow:hidden;">
+                                            <div class="padding-th">去年同期MS</div>
+                                        </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Buick</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Buick</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Buick</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Buick</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Buick1</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Buick</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Buick1</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Buick</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Buick2</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Buick</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Buick2</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Buick</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Caddy</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Caddy</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Caddy</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Caddy</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Caddy1</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Caddy</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Caddy1</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Caddy</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Caddy2</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Caddy</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Caddy2</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Caddy</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Chevy</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Chevy</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Chevy</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Chevy</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Chevy1</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Chevy</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Chevy1</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Chevy</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Chevy2</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Chevy</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Chevy2</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Chevy</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Export</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Export</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Export</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Export</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Export1</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Export</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Export1</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Export</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Export2</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Export</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Export2</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Export</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Total</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Total</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Total</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Total</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Total1</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Total</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Total1</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Total</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="odd" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Total2</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Total</td>
+                                    <td>W/S</td>
+                                    <td>86700</td>
+                                    <td>80602</td>
+                                    <td>-6098</td>
+                                    <td>-5.0%</td>
+                                    <td>-5.0%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                                <tr class="active even" role="row" style="height: 37px;">
+                                    <td class="sorting_1">Total2</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>Total</td>
+                                    <td>R/T</td>
+                                    <td>93607</td>
+                                    <td>90840</td>
+                                    <td>-2767</td>
+                                    <td>10%</td>
+                                    <td>10%</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="DTFC_LeftWrapper" style="position: absolute; top: 0px; left: 0px; width: 70px; height: 1px;">
+                    <div class="DTFC_LeftHeadWrapper" style="position:relative; top:0; left:0; overflow:hidden;">
+                        <table class="table browser-table dataTable no-footer DTFC_Cloned" role="grid" style="margin-left: 0px; width: 100%;">
+                            <thead>
+                                <tr class="gradeX" role="row" style="height: 36px;">
+                                    <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 52px;" aria-label=" 品牌 : activate to sort column descending" aria-sort="ascending">
+                                        <div class="padding-th"> 品牌 </div>
+                                    </th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    <div class="DTFC_LeftBodyWrapper" style="position: relative; top: 0px; left: 0px; overflow: hidden; height: 565px;">
+                        <div class="DTFC_LeftBodyLiner" style="position: relative; top: 0px; left: 0px; overflow-y: scroll; width: 87px; height: 565px;">
+                            <table class="table browser-table dataTable no-footer DTFC_Cloned" role="grid" aria-describedby="example_info" style="width: 100%; padding: 0px; margin: 0px;">
+                                <thead>
+                                    <tr class="gradeX" role="row" style="height: 0px;">
+                                        <th class="sorting_asc" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 52px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label=" 品牌 : activate to sort column descending" aria-sort="ascending"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="odd" role="row" data-dt-row="0" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="0" data-dt-column="0" rowspan="2">Buick</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="1" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="10" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="10" data-dt-column="0" rowspan="2">Buick1</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="11" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="20" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="20" data-dt-column="0" rowspan="2">Buick2</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="21" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="4" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="4" data-dt-column="0" rowspan="2">Caddy</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="5" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="14" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="14" data-dt-column="0" rowspan="2">Caddy1</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="15" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="24" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="24" data-dt-column="0" rowspan="2">Caddy2</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="25" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="2" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="2" data-dt-column="0" rowspan="2">Chevy</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="3" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="12" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="12" data-dt-column="0" rowspan="2">Chevy1</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="13" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="22" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="22" data-dt-column="0" rowspan="2">Chevy2</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="23" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="8" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="8" data-dt-column="0" rowspan="2">Export</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="9" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="18" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="18" data-dt-column="0" rowspan="2">Export1</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="19" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="28" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="28" data-dt-column="0" rowspan="2">Export2</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="29" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="6" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="6" data-dt-column="0" rowspan="2">Total</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="7" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="16" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="16" data-dt-column="0" rowspan="2">Total1</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="17" style="height: 37px;"></tr>
+                                    <tr class="odd" role="row" data-dt-row="26" style="height: 37px;">
+                                        <td class="sorting_1" data-dt-row="26" data-dt-column="0" rowspan="2">Total2</td>
+                                    </tr>
+                                    <tr class="active even" role="row" data-dt-row="27" style="height: 37px;"></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="DTFC_LeftFootWrapper" style="position:relative; top:0; left:0; overflow:hidden;"></div>
+                </div>
+            </div>
+            <div class="dataTables_info" id="example_info" role="status" aria-live="polite">Showing 1 to 30 of 30 entries</div>
+        </div>
+    </div>
+</body>
+<script src="../node_modules/iscroll/build/iscroll.js"></script>
+</html>
